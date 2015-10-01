@@ -1,0 +1,45 @@
+#include <stdio.h>
+#define MAJORITE 18
+#define FONDSMIN1 100
+#define FONDSMIN2 100000 
+int main(){	
+
+//--------------------------------------
+//Définitions de Variables
+//--------------------------------------
+
+int age=0; 		    
+int majeur=0;
+int fonds_client=0;
+
+//-------------------------------------
+//Lecture
+//-------------------------------------
+
+printf("Bonjour,\n Quelles somme voulez-vous déposer ?");
+scanf("%d",&fonds_client);
+
+printf("Tapez votre age:");
+scanf("%d",&age);
+
+majeur=age>=MAJORITE; 						// Définition de la condition "majeur"
+
+//-------------------------------------
+//Traitement
+//-------------------------------------
+
+if ( fonds_client >= FONDSMIN2 ){
+	printf("Félicitation votre compte est ouvert");
+
+
+}else if( majeur ){
+	if ( fonds_client >= FONDSMIN1 ){
+		printf("Félicitation votre compte est ouvert\n");
+	}else{ 
+		printf("Vous devez déposer au moins %d € pour pouvoir ouvrir un compte dans notre banque\n", FONDSMIN1);
+	}
+}else{
+	printf( "vous devez être majeur ou déposer au moins %d € pour pouvoir ouvrir un compte dans notre banque\n", FONDSMIN2);
+}
+return 0;
+}
