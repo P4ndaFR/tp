@@ -18,42 +18,14 @@ public class AfficheTexte implements Runnable
 
 	public void run()
 	{
-		for(int c=0; c<texte.length();c++)
+		try
 		{
-			try
-			{
-				ma_tache.sleep(500);
-			}
-			catch (InterruptedException exception) {}
-
-			System.out.print(texte.charAt(c));
+			ma_tache.sleep(1000);
 		}
-		System.out.println();
-	}
-}
+		catch (InterruptedException exception) {}
 
-class AfficheTexte2 extends Thread
-{
-	private String texte;
-
-	public AfficheTexte2( String texte )
-	{
-		super();
-		this.texte = new String(texte);
-	}
-
-	public void run()
-	{
 		for(int c=0; c<texte.length();c++)
-		{
-			try
-			{
-				this.sleep(200);
-			}
-			catch (InterruptedException exception) {}
-
 			System.out.print(texte.charAt(c));
-		}
 		System.out.println();
 	}
 }
