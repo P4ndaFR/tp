@@ -12,7 +12,7 @@
       private String nom;
       private Thread animation;
    
-      //public PanelDessin(String nom) 
+      public PanelDessin(String nom) 
       {
          super();
          this.nom = nom;
