@@ -6,6 +6,8 @@ import java.net.*;
 * @see ServeurSimple
 * @version 1.0
 */
+
+
 public class ClientSimple 
 {
 	private InetAddress hote;
