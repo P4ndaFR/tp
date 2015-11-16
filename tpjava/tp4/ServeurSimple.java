@@ -6,16 +6,19 @@ import java.net.*;
 * @see ClientSimple
 * @version 1.0
 */
-public class ServeurSimple {
+public class ServeurSimple implements Runnable 
+{
 	private int port = 8888;
 	private ServerSocket socketServeur = null;
 	private Socket socket = null;
+	private Thread host;
 	/**
 	* Constructeur par défaut
 	* Les paramètres sont initialisés "en dur"
 	*/
 
-	public ServeurSimple() {
+	public ServeurSimple() 
+	{
 
 		try 
 		{
@@ -26,26 +29,42 @@ public class ServeurSimple {
 		{
 			System.err.println( "Impossible de créer un ServerSocket" );
 		}
-
-		while (true) 
-		{
-			try 
+			while (true) 
 			{
-				socket = socketServeur.accept();
-				System.out.println("Connexion acceptée : " + socket.getInetAddress());
-				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-				while(true) 
+				try 
 				{
-					String message = in.readLine();
-					if (message == null) break;
-					System.out.println(message);
+					socket = socketServeur.accept();
 				}
+				catch( IOException e ) {}
 
-				socket.close();
-				System.out.println("Le serveur ferme la socket avec le client");
-			}	
-			catch( IOException e ) {}
+			this.host = new Thread(this);
+			host.start();
+			}
+	}
+
+	
+
+	public void run()
+	{
+		try 
+		{
+		System.out.println("Connexion acceptée : " + socket.getInetAddress());
+		BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		while(true) 
+		{
+			String message = in.readLine();
+			if (message == null) break;
+			System.out.println(message);
 		}
+
+		socket.close();
+		System.out.println("Le serveur ferme la socket avec le client");
+		}
+		catch( IOException e ) 
+		{
+			System.err.println( "Impossible de créer un ServerSocket" );
+		}
+		
 	}
 
 	public static void main( String [] args ) 
