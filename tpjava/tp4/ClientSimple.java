@@ -1,5 +1,9 @@
 import java.io.*;
 import java.net.*;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
 /**
 * Classe ClientSimple
 * Cette classe permet de créer un client pour communiquer avec un serveur TCP
@@ -8,19 +12,36 @@ import java.net.*;
 */
 
 
-public class ClientSimple 
+public class ClientSimple extends JFrame implements ActionListener
 {
 	private InetAddress hote;
 	private int port;
-
+	private JTextField texte;
+	private JButton send;
 	private Socket socket;
+	private String message;
+	private PrintWriter output;
 	/**
 	* Constructeur par défaut
 	* Les paramètres sont initialisés "en dur"
 	*/
 	public ClientSimple(String adress) 
 	{
-		
+		super("client");
+		//this.setSize(hauteur,largeur);
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH); //Fullscreen
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+		this.texte = new JTextField();
+		this.send = new JButton("Envoyer");
+
+		Container c = this.getContentPane();
+		c.add(texte,BorderLayout.CENTER);
+		c.add(send,BorderLayout.SOUTH);
+		send.addActionListener(this);
+
+		this.setVisible(true);
+
 		//initialisations
 		this.hote = null;
 		this.port = 8888;
@@ -45,15 +66,15 @@ public class ClientSimple
 		{
 			socket = new Socket(hote, port);
 			System.out.println("Connecté au serveur: " + socket.getInetAddress() + ":" +socket.getPort());
+	
 			//l'objet input contient le texte tapé sur la console
-			BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+			//BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 			//l'objet output est ce qui transmis sur la socket
-			PrintWriter output = new PrintWriter(socket.getOutputStream(),true);
-			String message;
+			//PrintWriter output = new PrintWriter(socket.getOutputStream(),true);
 			//acquisition via le clavier d'un message et envoi au serveur
 			while(true) 
 			{
-				message = input.readLine();
+				//message = input.readLine();
 				if (message.equals("STOP"))
 				{
 					break;
@@ -69,6 +90,12 @@ public class ClientSimple
 		}
 		catch(IOException e) {}
 		
+	}
+
+	public void actionPerformed(ActionEvent e)
+	{
+		output = new PrintWriter(socket.getOutputStream(),true);
+		message = texte.getText();
 	}
 
 	public static void main( String [] args ) 

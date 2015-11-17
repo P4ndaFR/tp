@@ -8,7 +8,7 @@ import java.awt.*;
 * @see ClientSimple
 * @version 1.0
 */
-public class ServeurSimple extends JFrame implements Runnable 
+public class ServeurSimple extends JFrame implements Runnable
 {
 	private int port = 8888;
 	private ServerSocket socketServeur = null;
