@@ -8,13 +8,12 @@ import java.awt.*;
 * @see ClientSimple
 * @version 1.0
 */
-public class ServeurSimple extends JFrame implements Runnable
+public class ServeurSimple implements Runnable
 {
 	private int port = 8888;
 	private ServerSocket socketServeur = null;
 	private Socket socket = null;
 	private Thread host;
-	private JTextArea message;
 	/**
 	* Constructeur par défaut
 	* Les paramètres sont initialisés "en dur"
@@ -24,23 +23,6 @@ public class ServeurSimple extends JFrame implements Runnable
 	/* Connexion */
 	public ServeurSimple() 
 	{
-		super("Serveur");
-		//this.setSize(hauteur,largeur);
-		this.setExtendedState(JFrame.MAXIMIZED_BOTH); //Fullscreen
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
-
-		this.message = new JTextArea();
-		message.setEditable(false);
-
-
-		Container c = this.getContentPane();
-		c.add(message,BorderLayout.CENTER);
-
-		//bouton.addActionListener(this);
-		
-		this.setVisible(true);
-		
 		try 
 		{
 			socketServeur = new ServerSocket( port );
