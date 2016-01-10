@@ -12,11 +12,12 @@ public class InterfaceBDD extends JFrame implements ActionListener
 	private JButton but_esc;
 	private ArrayList<ElementBDD> list;
 	private String article;
+	private GestionBDD gestion;
 
 	public InterfaceBDD()
 	{
 		super();
-		GestionBDD gestion = new GestionBDD();
+		gestion = new GestionBDD();
 		list = gestion.getList();
 		this.creerInterface();
 	}
@@ -56,8 +57,25 @@ public class InterfaceBDD extends JFrame implements ActionListener
 		if( e.getSource() == but_dep )
 		{
 			ElementBDD tmp = (ElementBDD)jlist.getSelectedValue();
-			gestion.retirerArticle(tmp.getNom());
+			gestion.deposerArticle(tmp.getNom());
 			gestion.listerArticles();
 		}
+		if( e.getSource() == but_ret )
+		{
+			ElementBDD tmp = (ElementBDD)jlist.getSelectedValue();
+			gestion.deposerArticle(tmp.getNom());
+			gestion.listerArticles();
+		}
+		if( e.getSource() == but_maj )
+		{
+			ElementBDD tmp = (ElementBDD)jlist.getSelectedValue();
+			//gestion.deposerArticle(tmp.getNom());
+			gestion.listerArticles();
+		}
+		if( e.getSource() == but_esc )
+		{
+			return;
+		}
+
 	}
 }
