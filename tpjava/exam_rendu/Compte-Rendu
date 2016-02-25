@@ -1,0 +1,12 @@
+Notre raisonnement pour la mise en oeuvre des règles du jeu est très simple.
+- L'utilisateur fais un choix parmis les 3 possible papier, pierre, feuille. 
+- L'ordinateur fais sont choix aléatoirement, également parmis les 3 possibilité.
+Puis on confronte les résultats du joueur et de l'ordinateur et en fonction du résultat on détermine si il y a une victoire, défaite du joueur ou une égalité.
+
+Elle utilise le modèle MVC:
+- Le modèle correspond a la classe PPC (Papier Pierre Ciseaux)
+- La vue Correspond a la classe IHM (Interface Homme Machine)
+- Le controlleur correspond au principal
+
+Pour l`ÌHM, nous avons utiliser le Layout Manager "BoxLayout", qui permet d'orienter le Flux des JComponent selon l'axe Vertical ou Horizontal, tout en conservant le système de marge automatique :
+j'ai donc implémenté 1 JPanel par module : ensemble ( pour le fond ), noms ( pour l'affichage des noms au dessus des scores), scores pour l'affichage des scores, etc ...

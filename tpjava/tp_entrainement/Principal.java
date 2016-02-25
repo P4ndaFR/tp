@@ -1,15 +1,9 @@
 public class Principal
 {
-	public static void main(String[] args)
+	public static void main(String []args)
 	{
-		/*Fenetre f = new Fenetre('#');
-		f.afficher();*/
-		Gestionnaire g = new Gestionnaire();
-
-		try
-		{
-			g.activer();
-		}
-		catch(java.io.IOException e) {}
+		//IHM i = new IHM(Integer.parseInt(args[0]),Integer.parseInt(args[1]),"PANDA");
+		IHM i = new IHM("Title");
+		System.out.println(i);
 	}
 }
