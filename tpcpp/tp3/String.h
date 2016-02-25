@@ -62,6 +62,27 @@ class String
 			os << str.ptr;
 			return os;
 		}
+
+		String &operator+=(const String &str)
+		{
+
+			char *temp;
+			temp = new char[lg];
+			strcpy(temp,ptr);
+			lg =( lg + str.lg ) - 1;
+			allocation(lg);
+			strcpy(ptr,temp);
+			delete temp;
+			strcat(ptr,str.ptr);
+			return *this;
+		}
+		friend String operator+(const String& str1,const String& str2)
+		{
+			String str3;
+			str3+=str1;
+			str3+=str2;
+			return str3;
+		}
 		int length();
 		void clear();
 		bool isEmpty();
