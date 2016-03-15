@@ -29,4 +29,17 @@ bool String::isEmpty()
 		return true;
 	}
 }
+String::operator char*()
+{
+	return this->ptr;
+}
+char &String::operator[](int i)
+{
+	range_error e("Indice incorrect");
+	if(i<0 || i>=length())
+	{
+		throw e;
+	}
+	return ptr[i];
+}
 
